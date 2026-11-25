@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body, #root { margin: 0; height: 100%; width: 100%; overflow: hidden; background: #140c07; overscroll-behavior: none; }
+body { font-family: 'Cormorant Garamond', Georgia, serif; color: #f7eedb; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; touch-action: none; }
+canvas { display: block; touch-action: none; }
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-gold-500/40 shadow-2xl;
+    background: linear-gradient(160deg, rgba(46, 28, 16, 0.92), rgba(20, 12, 7, 0.94));
+    backdrop-filter: blur(8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(234, 209, 147, 0.15);
+  }
+  .panel-soft {
+    @apply rounded-xl border border-gold-500/25;
+    background: rgba(20, 12, 7, 0.62);
+    backdrop-filter: blur(6px);
+  }
+  .btn-gold {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 font-display text-sm font-bold tracking-[0.2em] text-walnut-950 transition-all duration-200;
+    background: linear-gradient(180deg, #f0d89a, #c49a45 55%, #a07a2f);
+    box-shadow: 0 6px 24px rgba(196, 154, 69, 0.35), inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 10px 32px rgba(196, 154, 69, 0.5), inset 0 1px 0 rgba(255,255,255,0.5); }
+  .btn-gold:active { transform: translateY(1px) scale(0.98); }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold-400/50 px-5 py-2.5 font-display text-xs font-bold tracking-[0.18em] text-gold-300 transition-all;
+    background: rgba(20, 12, 7, 0.5);
+  }
+  .btn-ghost:hover { @apply border-gold-300 bg-walnut-800/70 text-gold-300; }
+  .icon-btn {
+    @apply flex h-11 w-11 items-center justify-center rounded-full border border-gold-500/40 text-gold-300 transition-all;
+    background: rgba(20, 12, 7, 0.6);
+    backdrop-filter: blur(6px);
+  }
+  .icon-btn:hover { @apply border-gold-300 text-gold-300; background: rgba(46, 28, 16, 0.85); }
+  .choice {
+    @apply w-full rounded-xl border border-gold-500/30 px-4 py-3 text-left font-serif text-lg leading-snug text-cream-100 transition-all;
+    background: rgba(63, 39, 22, 0.55);
+  }
+  .choice:hover, .choice:focus-visible { @apply border-gold-300 outline-none; background: rgba(124, 33, 48, 0.55); transform: translateX(4px); }
+  .gold-text {
+    background: linear-gradient(180deg, #fff1c8 0%, #e8c77c 45%, #a07a2f 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .parchment {
+    background: radial-gradient(ellipse at 30% 20%, #fbf3de 0%, #f1e2c0 60%, #e4cc9c 100%);
+    color: #2e1c10;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 60px rgba(160, 122, 47, 0.25);
+  }
+  .vignette { background: radial-gradient(ellipse at center, transparent 45%, rgba(10, 5, 2, 0.75) 100%); }
+}
+
+.scrollbar-thin::-webkit-scrollbar { width: 6px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(196,154,69,0.4); border-radius: 3px; }
