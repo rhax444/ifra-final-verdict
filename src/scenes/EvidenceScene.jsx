@@ -164,7 +164,7 @@ export default function EvidenceScene() {
     if (n < 5) { audio.sfx('error'); await showNote({ title: 'Sealed', text: INVESTIGATION.doorLocked(n), kind: 'info' }); return }
     if (!s.flags.coffeeDone) { audio.sfx('error'); await showNote({ title: 'One moment', text: s.flags.coffeeSeen ? 'That coffee is getting cold...' : INVESTIGATION.doorDesk, kind: 'info' }); return }
     cinematic(true)
-    setFlag('exitOpen')
+    setFlag('evExitOpen')
     audio.sfx('door')
     await wait(900)
     goTo('courtroom', 'The court will now come to order...')
@@ -188,7 +188,7 @@ export default function EvidenceScene() {
 
       {/* doors */}
       <SingleDoor position={[0, 0, 5.92]} rotation={[0, Math.PI, 0]} sign="RECEPTION" />
-      <SingleDoor position={[6.92, 0, -3]} rotation={[0, -Math.PI / 2, 0]} sign="COURTROOM" open={flags.exitOpen ? 1 : 0} />
+      <SingleDoor position={[6.92, 0, -3]} rotation={[0, -Math.PI / 2, 0]} sign="COURTROOM" open={flags.evExitOpen ? 1 : 0} />
       <Interactable id="exit" position={[6.1, 0, -3]} radius={1.5} label={n < 5 ? 'Try the courtroom door' : 'Enter the courtroom'} onInteract={exitDoor} important={n >= 5 && !!flags.coffeeDone} markerY={2.3} />
       <SingleDoor position={[-6.92, 0, -3.8]} rotation={[0, Math.PI / 2, 0]} sign="STAFF ONLY" open={flags.staffDoor ? 1 : 0} />
 

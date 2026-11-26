@@ -333,7 +333,7 @@ export default function CourtroomScene() {
 
   const exitCourt = async () => {
     cinematic(true)
-    setFlag('exitOpen')
+    setFlag('courtExitOpen')
     audio.sfx('door')
     await wait(900)
     goTo('courtyard', 'Stepping out into the evening light...')
@@ -432,7 +432,7 @@ export default function CourtroomScene() {
       ))}
 
       {/* ---- doors ---- */}
-      <DoubleDoor position={[0, 0, 13.88]} rotation={[0, Math.PI, 0]} w={2.8} h={3.8} openRight={flags.exitOpen ? 1 : doorR} open={flags.exitOpen ? 1 : 0} glow={!!flags.exitOpen} />
+      <DoubleDoor position={[0, 0, 13.88]} rotation={[0, Math.PI, 0]} w={2.8} h={3.8} openRight={flags.courtExitOpen ? 1 : doorR} open={flags.courtExitOpen ? 1 : 0} glow={!!flags.courtExitOpen} />
       <SlidingHand state={slide} />
       <MovingFolder state={slide} />
       {stage === 'folder' && (

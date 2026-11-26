@@ -215,8 +215,8 @@ export function Ending() {
   return (
     <AnimatePresence>
       {ending === 'lines' && (
-        <motion.div key="lines" className="absolute inset-0 z-30 flex flex-col items-center justify-end px-6 pb-[14vh] text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <div className="absolute inset-0 bg-gradient-to-t from-walnut-950/85 via-walnut-950/20 to-transparent" />
+        <motion.div key="lines" className="absolute inset-0 z-30 flex flex-col items-center justify-start px-6 pt-[10vh] text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-walnut-950/70 via-walnut-950/25 to-transparent" />
           <div className="relative">
             {COURTYARD.lines.map((l, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 14, letterSpacing: '0.4em' }} animate={line > i ? { opacity: 1, y: 0, letterSpacing: '0.16em' } : {}} transition={{ duration: 1.6 }}
