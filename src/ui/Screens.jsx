@@ -137,9 +137,13 @@ export function Customizer({ onDone, inGame = false }) {
   const setCustom = useGame((s) => s.setCustom)
   const pick = (patch) => { audio.sfx('select'); setCustom(patch) }
   const done = () => { audio.sfx('gavel'); onDone ? onDone() : goTo('reception', OPENING.loading) }
-  return (
+  const panel = (
     <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: inGame ? 0 : 0.4 }}
-      className={`${inGame ? '' : 'absolute bottom-3 left-3 right-3 z-30 md:bottom-auto md:left-auto md:right-8 md:top-1/2 md:w-[380px] md:-translate-y-1/2'} panel max-h-[50vh] overflow-y-auto p-4 scrollbar-thin md:max-h-[86vh] md:p-6`}>
+      className={inGame
+        ? 'panel max-h-[50vh] overflow-y-auto overscroll-contain p-4 pb-6 scrollbar-thin md:p-6'
+        // Height is capped to the viewport and the panel scrolls itself. Centring is done by the
+        // flex wrapper below, not a CSS transform, because Framer Motion owns this element's transform.
+        : 'panel pointer-events-auto w-full max-h-[50dvh] overflow-y-auto overscroll-contain p-4 pb-6 scrollbar-thin md:w-[380px] md:max-h-[calc(100dvh-100px)] md:p-6 md:pb-8 lg:w-[400px]'}>
       <div className="mb-1 flex items-center gap-2 font-ui text-[10px] tracking-[0.35em] text-gold-400"><Sparkles size={12} /> BEFORE YOU ENTER</div>
       <h2 className="font-display text-xl font-bold text-cream-50 md:text-2xl">The court requires your portrait</h2>
       <p className="mb-4 font-serif text-base italic text-cream-200/70">Style the defendant. The main character always dresses the part.</p>
@@ -158,6 +162,14 @@ export function Customizer({ onDone, inGame = false }) {
       </Section>
       <button onClick={done} className="btn-gold mt-3 w-full">{inGame ? 'SAVE LOOK' : <>BEGIN CHAPTER ONE <ChevronRight size={16} /></>}</button>
     </motion.div>
+  )
+  if (inGame) return panel
+  return (
+    // Full-screen, click-through layout layer: bottom sheet on phones, right-hand column on desktop.
+    // The top padding on desktop keeps the panel clear of the top-right music/sound/pause buttons.
+    <div className="pointer-events-none absolute inset-0 z-30 flex items-end justify-center p-3 md:items-center md:justify-end md:pb-4 md:pl-4 md:pr-6 md:pt-[84px] lg:pr-10">
+      {panel}
+    </div>
   )
 }
 function Section({ title, children }) {

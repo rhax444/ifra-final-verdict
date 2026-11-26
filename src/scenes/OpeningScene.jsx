@@ -89,7 +89,7 @@ export function StudioScene() {
   const motion = useRef({ speed: 0, action: null, expression: 'smile' })
   const turntable = useRef()
   const { size, camera } = useThree()
-  const wide = size.width > size.height * 1.1
+  const wide = size.width >= 768 // matches the md breakpoint where the panel moves to the right
   useEffect(() => {
     useGame.setState({ camShot: null })
     camera.position.set(wide ? 0.55 : 0, wide ? 1.3 : 1.2, wide ? 3.2 : 5.2)
