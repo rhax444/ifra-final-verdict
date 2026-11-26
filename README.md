@@ -1,5 +1,7 @@
 # Ifra: The Final Verdict
 
+**Play it:** https://ifra-final-verdict.vercel.app
+
 A cinematic 3D courtroom mystery adventure, built with React, Vite, Three.js, React Three Fiber, Drei, Tailwind, Framer Motion, Lucide and Howler.
 
 Everything is procedural: the geometry, textures, music and sound effects are all generated in code. There are no asset downloads and no paid APIs. The only external request is Google Fonts, which falls back to system fonts when offline.
