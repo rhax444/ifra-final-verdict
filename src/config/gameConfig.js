@@ -61,14 +61,15 @@ export const CUSTOMIZATION = {
     { id: 'bob', label: 'Sharp Bob' },
   ],
   hairColors: ['#1a110c', '#3b2216', '#5c3a24', '#7a4a2a', '#2b1b2e'],
-  outfitColors: ['#2b2f3d', '#5a1a26', '#3d2a1e', '#e9e1d2', '#1d3b35'],
+  // co-ord suit colours: cream, soft blush, muted burgundy, black, sage pastel
+  outfitColors: ['#efe4d2', '#e6c2bf', '#6e2233', '#1f1c1f', '#b8c4ae'],
   accessories: [
     { id: 'earrings', label: 'Gold Earrings' },
     { id: 'glasses', label: 'Reading Glasses' },
     { id: 'pearls', label: 'Pearl Necklace' },
     { id: 'none', label: 'None' },
   ],
-  defaults: { hairStyle: 'long', hairColor: '#1a110c', outfitColor: '#2b2f3d', accessory: 'earrings' },
+  defaults: { hairStyle: 'long', hairColor: '#1a110c', outfitColor: '#efe4d2', accessory: 'earrings' },
 }
 
 // ---------------------------------------------------------------------------

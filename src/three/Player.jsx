@@ -3,7 +3,7 @@ import { useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useGame } from '../store/useGame'
-import { Humanoid, ifraLook } from './Humanoid'
+import { IfraAvatar } from './IfraAvatar'
 import { player, camRig, input, resolveCollisions, interactables, nearest, updateTweens } from '../game/registry'
 import { audio } from '../audio/audio'
 
@@ -22,7 +22,6 @@ const tmp = new THREE.Vector3()
 
 export function Player({ outfit = 'suit', visible = true }) {
   const custom = useGame((s) => s.custom)
-  const look = useMemo(() => ifraLook(custom, outfit), [custom, outfit])
   const group = useRef()
   const motion = useRef({ speed: 0, action: null, expression: 'neutral' })
   const stepT = useRef(0)
@@ -78,7 +77,7 @@ export function Player({ outfit = 'suit', visible = true }) {
 
   return (
     <group ref={group}>
-      <Humanoid look={look} motion={motion} />
+      <IfraAvatar custom={custom} outfit={outfit} motion={motion} />
       {/* soft contact shadow for low quality mode */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.01, 0]}>
         <circleGeometry args={[0.32, 20]} />

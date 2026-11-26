@@ -6,7 +6,7 @@ import { useGame } from '../store/useGame'
 import { std, Dust, MAT } from '../three/props'
 import { paverTexture, grassTexture, woodTexture } from '../three/textures'
 import { SkyDome, Courthouse, Tree, LampPost, FlowerBed } from '../three/Exterior'
-import { Humanoid, ifraLook } from '../three/Humanoid'
+import { IfraAvatar } from '../three/IfraAvatar'
 import { useQuality } from './common'
 import { tween, sceneRun } from '../game/registry'
 import { wait } from '../game/director'
@@ -85,15 +85,14 @@ export default function OpeningScene() {
 // ---------------- character studio ----------------
 export function StudioScene() {
   const custom = useGame((s) => s.custom)
-  const look = useMemo(() => ifraLook(custom, 'suit'), [custom])
   const motion = useRef({ speed: 0, action: null, expression: 'smile' })
   const turntable = useRef()
   const { size, camera } = useThree()
   const wide = size.width >= 768 // matches the md breakpoint where the panel moves to the right
   useEffect(() => {
     useGame.setState({ camShot: null })
-    camera.position.set(wide ? 0.55 : 0, wide ? 1.3 : 1.2, wide ? 3.2 : 5.2)
-    camera.lookAt(wide ? 0.55 : 0, wide ? 1.05 : 0.25, 0)
+    camera.position.set(wide ? 0.55 : 0, wide ? 1.3 : 1.4, wide ? 3.2 : 3.5)
+    camera.lookAt(wide ? 0.55 : 0, wide ? 1.05 : 0.62, 0)
   }, [wide, camera])
   useFrame((s, dt) => {
     if (turntable.current) turntable.current.rotation.y += dt * 0.35
@@ -116,7 +115,7 @@ export function StudioScene() {
         <mesh position={[0, 0.08, 0]} material={MAT.walnut} receiveShadow castShadow><cylinderGeometry args={[0.9, 0.95, 0.16, 48]} /></mesh>
         <mesh position={[0, 0.165, 0]} rotation={[Math.PI / 2, 0, 0]} material={MAT.gold}><torusGeometry args={[0.9, 0.02, 8, 64]} /></mesh>
         <group ref={turntable} position={[0, 0.16, 0]}>
-          <Humanoid look={look} motion={motion} />
+          <IfraAvatar custom={custom} outfit="suit" motion={motion} />
         </group>
       </group>
       <Dust count={80} area={[6, 4, 4]} center={[0, 2, 0]} size={0.04} />

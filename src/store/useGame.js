@@ -16,7 +16,12 @@ const detectQuality = () => {
 const loadCustom = () => {
   try {
     const raw = localStorage.getItem('ifra-custom')
-    if (raw) return { ...CUSTOMIZATION.defaults, ...JSON.parse(raw) }
+    if (raw) {
+      const saved = { ...CUSTOMIZATION.defaults, ...JSON.parse(raw) }
+      // colours saved by older versions of the palette fall back to the current default
+      if (!CUSTOMIZATION.outfitColors.includes(saved.outfitColor)) saved.outfitColor = CUSTOMIZATION.defaults.outfitColor
+      return saved
+    }
   } catch (e) { /* ignore */ }
   return { ...CUSTOMIZATION.defaults }
 }
